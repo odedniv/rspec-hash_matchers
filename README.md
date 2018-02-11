@@ -50,7 +50,36 @@ specify do
 end
 ```
 
-See [the spec](spec/rspec/hash_matchers/contain_exactly_spec.rb) for all
+See [the spec](spec/rspec/hash_matchers/contain_exactly_keys_spec.rb) for all
+examples of matches and mismatches.
+
+### Include keys (in array)
+
+Like RSpec's `include`, but for hash and array of hashes.
+
+* Order never matters
+* Allows any mix of keys and keys with values (make sure you put the keys with
+  values last)
+* Must contain exact array entries, but allows additional hash keys
+
+```ruby
+specify do
+  # Hash
+  expect(a: 1, b: 2, c: 3, d: 4).to include_keys :d, c: 3
+  # Array of hashes
+  expect([
+    { a: 1, b: 2, c: 3 },
+    { d: 4, e: 5, f: 6 },
+    { g: 7, h: 8, i: 9 },
+  ]).to include_keys_in_array(
+    [f: 6],     # second line
+    [:a, :c],         # first line
+    { i: 9, h: 8 }, # third line
+  )
+end
+```
+
+See [the spec](spec/rspec/hash_matchers/include_keys_spec.rb) for all
 examples of matches and mismatches.
 
 ## Development

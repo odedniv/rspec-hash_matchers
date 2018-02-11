@@ -2,7 +2,7 @@ require 'active_support'
 
 module RSpec
   module HashMatchers
-    module ContainExactly
+    module ContainExactlyKeys
       extend RSpec::Matchers::DSL
 
       matcher :contain_exactly_keys do |*expected|
@@ -44,5 +44,5 @@ module RSpec
 end
 
 RSpec.configure do |config|
-  config.include RSpec::HashMatchers::ContainExactly
+  config.include RSpec::HashMatchers::ContainExactlyKeys
 end

@@ -1,5 +1,5 @@
-RSpec.describe RSpec::HashMatchers::ContainExactly do
-  describe "contain_exactly_keys" do
+RSpec.describe RSpec::HashMatchers::ContainExactlyKeys do
+  describe "#contain_exactly_keys" do
     subject { { a: 1, b: 2, c: 3, d: 4 } }
 
     context "Match" do
@@ -55,11 +55,11 @@ RSpec.describe RSpec::HashMatchers::ContainExactly do
         end
 
         context "Missing" do
-          it { should_not contain_exactly_keys(:a, :b, :c, d: 4, e: 5) }
+          it { should_not contain_exactly_keys(:a, :b, d: 4) }
         end
 
         context "Extra" do
-          it { should_not contain_exactly_keys(:a, :b, d: 4) }
+          it { should_not contain_exactly_keys(:a, :b, :c, d: 4, e: 5) }
         end
 
         context "Missing and extra" do
@@ -69,7 +69,7 @@ RSpec.describe RSpec::HashMatchers::ContainExactly do
     end
   end
 
-  describe "contain_exactly_keys_in_array" do
+  describe "#contain_exactly_keys_in_array" do
     subject do
       [
         { a: 1, b: 2, c: 3 },
